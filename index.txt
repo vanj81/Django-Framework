@@ -1,0 +1,10 @@
+     < div > {{user.name | title}} </ div >
+    {% endif%}
+    < ul >
+        {% для числа в arr %}
+            < li > {{ number }} </ li >
+        {% для продукта в продуктах %}
+            < li > {{ product.name }} ({{product.category}}) </ li >
+        {% endfor%}
+    </ ul >
+    < h1  class = " test-class " > Главная </ h1 >

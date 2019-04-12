@@ -1,0 +1,54 @@
+из форм импорта Django
+из django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+
+из .models import ShopUser
+
+
+Класс  ShopUserLoginForm ( AuthenticationForm ):
+    Класс  Meta :
+        модель = ShopUser
+        fields = ( ' username ' , ' password ' )
+
+    def  __init__ ( self , * args , ** kwargs ):
+        супер (ShopUserLoginForm, самообслуживание ). __init__ ( * args, ** kwargs)
+        для field_name, поле в  self .fields.items ():
+            field.widget.attrs [ ' class ' ] =  ' form-control '
+
+
+Класс  ShopUserRegisterForm ( UserCreationForm ):
+    Класс  Meta :
+        модель = ShopUser
+        fields = ( ' username ' , ' first_name ' , ' password1 ' , ' password2 ' , ' email ' , ' age ' , ' avatar ' )
+
+    def  __init__ ( self , * args , ** kwargs ):
+        супер (). __init__ ( * args, ** kwargs)
+        для field_name, поле в  self .fields.items ():
+            field.widget.attrs [ ' class ' ] =  ' form-control '
+
+    def  clean_age ( self ):
+        data =  self .cleaned_data [ ' age ' ]
+        если данные <  18 :
+            поднять формы. ValidationError ( " Вы слишком молоды! " )
+
+        вернуть данные
+
+
+Класс  ShopUserEditForm ( UserChangeForm ):
+    Класс  Meta :
+        модель = ShopUser
+        fields = ( ' username ' , ' first_name ' , ' email ' , ' age ' , ' avatar ' , ' password ' )
+
+    def  __init__ ( self , * args , ** kwargs ):
+        супер (). __init__ ( * args, ** kwargs)
+        для field_name, поле в  self .fields.items ():
+            field.widget.attrs [ ' class ' ] =  ' form-control '
+            field.help_text =  ' '
+            если field_name ==  ' пароль ' :
+                field.widget = forms.HiddenInput ()
+
+    def  clean_age ( self ):
+        data =  self .cleaned_data [ ' age ' ]
+        если данные <  18 :
+            поднять формы. ValidationError ( " Вы слишком молоды! " )
+
+        вернуть данные

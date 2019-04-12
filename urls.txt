@@ -1,0 +1,14 @@
+из django.conf.urls.static импорт статический
+импорт из django.conf.urls включает
+импортировать mainapp.views как mainapp
+импортировать authapp.views как authapp
+
+
+urlpatterns = [
+    url ( r ' ^ $ ' , mainapp.main, name = ' index ' ),
+    url ( r ' ^ $ ' , mainapp.main, name = ' main ' ),
+    url ( r ' ^ auth / ' , include ( ' authapp.urls ' , namespace = ' auth ' )),
+    url ( r ' ^ products / ' , include ( ' mainapp.urls ' , namespace = ' products ' )),
+    url ( r ' ^ contacts / ' , mainapp.contacts, name = ' contacts ' ),
+    url ( r ' ^ admin / ' , admin.site.urls),
+]

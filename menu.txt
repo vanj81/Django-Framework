@@ -1,0 +1,13 @@
+<ul class="menu">
+    <li><a href="{% url 'index' %}">главная</a></li>
+    <li><a href="{% url 'products' %}">продукты</a></li>
+    <li><a href="{% url 'contacts' %}">контакты</a></li>
+    <li><a class="{% if request.resolver_match.url_name == 'index' %}
+                        active
+                      {% endif %}" href="{% url 'index' %}">главная</a></li>
+    <li><a class="{% if request.resolver_match.url_name == 'products' %}
+                        active
+                      {% endif %}" href="{% url 'products:index' %}">продукты</a></li>
+    <li><a class="{% if request.resolver_match.url_name == 'contacts' %}
+                        active
+                      {% endif %}" href="{% url 'contacts' %}">контакты</a></li>
